@@ -2,11 +2,11 @@
 
 # Grab Go package name
 mainPackagePath=$1
-if [[ ! -z "${mainPackagePath}" ]];
+if [[ -z "${mainPackagePath}" ]];
 then
   pkgName="$(cd /src/cmd/portainer && go list -e -f '{{.ImportComment}}' 2>/dev/null || true)"
 else
-  pkgName="$(go list -e -f '{{.ImportComment}}' 2>/dev/null || true)"
+  pkgName="$(cd ${mainPackagePath} && go list -e -f '{{.ImportComment}}' 2>/dev/null || true)"
 fi
 
 if [ -z "$pkgName" ];
