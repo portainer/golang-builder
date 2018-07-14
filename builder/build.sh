@@ -1,4 +1,9 @@
 #!/bin/bash -e
+if [[ ! -z "${HTTP_PROXY}" ]];
+then
+  export http_proxy="${HTTP_PROXY}"
+  git config --global http.proxy "${HTTP_PROXY}"
+fi
 
 source /build_environment.sh $1
 
